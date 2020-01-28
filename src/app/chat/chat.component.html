@@ -1,0 +1,14 @@
+<div class="row margin">
+    <div class="col-md-12">
+        <h4>Live Chat</h4>
+        <div id="chatDisplay">
+            <ul>
+              <li *ngFor = "let msg of messages">{{msg}}</li>
+            </ul>
+          </div>
+          <div id="chatInput">
+            <input type="text" id="chatBox" #chatMessage class="form-control">
+            <button (click)="sendMessage(chatMessage.value)" class="btn btn-success">Send Message</button>
+          </div>
+    </div>
+</div>
