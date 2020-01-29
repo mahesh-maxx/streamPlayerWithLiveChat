@@ -11,8 +11,9 @@ export class ChatComponent implements OnInit ,OnDestroy{
   messages = [];
   private client : Paho.MQTT.Client;
   private message : Paho.MQTT.Message;
+  clientID : string = 'JioChatMqttclient'+ Date.now()
   constructor() {
-    this.client  = new Paho.MQTT.Client("mqtt.eclipse.org", Number(443), "JioChatMqttclient1")
+    this.client  = new Paho.MQTT.Client("mqtt.eclipse.org", Number(443),this.clientID)
     this.client.onConnectionLost = (responseObject: Object) => {
       console.log('Connection lost.',responseObject);
     };
@@ -29,7 +30,12 @@ export class ChatComponent implements OnInit ,OnDestroy{
   }
   onConnect() { 
     console.log("onConnect");
-    this.client.subscribe("/JioChatMqtt/topic1",{});
+    this.client.subscribe("/JioChatMqtt/topic1",{qos:1,onSuccess:function(success){
+      console.log("sc" , success)
+
+    },onFailure:function(err){
+      console.log("err " ,err )
+    },timeout:6000});
   }
 
   sendMessage(message:string){
