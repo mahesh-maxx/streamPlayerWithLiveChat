@@ -23,7 +23,7 @@ export class ChatComponent implements OnInit ,OnDestroy{
       console.log('Message arrived.', message);
     };
 
-    this.client.connect({ onSuccess: this.onConnect.bind(this) });
+    this.client.connect({keepAliveInterval:200, onSuccess: this.onConnect.bind(this) });
     }
 
   ngOnInit() {
