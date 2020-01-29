@@ -4,3 +4,7 @@
     margin-right: 0.3rem;
     margin-left: -1.8rem;
 }
+#chatBox,#chatInput {
+    margin-bottom: 0.5rem;
+}
+
